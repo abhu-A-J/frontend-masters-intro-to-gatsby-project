@@ -4,6 +4,9 @@ import { Link, useStaticQuery, graphql } from 'gatsby';
 /* COmponenst */
 import Seo from './Seo';
 
+/* Styles */
+import '../styles/global.css';
+
 export default function Layout({
   children,
   title = false,
