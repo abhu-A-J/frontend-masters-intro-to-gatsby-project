@@ -7,5 +7,35 @@ module.exports = {
     image:
       'https://res.cloudinary.com/jlengstorf/image/upload/v1628127675/frontend-masters/gatsby-intro/share-image.jpg',
   },
-  plugins: ['gatsby-plugin-react-helmet'],
+  plugins: [
+    // plugin for adding react-helmet
+    'gatsby-plugin-react-helmet',
+
+    // plugin to add file system
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'posts',
+        path: `${__dirname}/src/posts/`,
+      },
+    },
+
+    // plugin to create automatic pages from posts folder
+    {
+      resolve: 'gatsby-plugin-page-creator',
+      options: {
+        path: `${__dirname}/src/posts/`,
+      },
+    },
+
+    // lugin to start adding mdx
+    {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        defaultLayouts: {
+          posts: require.resolve('./src/components/BlogLayout.jsx'),
+        },
+      },
+    },
+  ],
 };
