@@ -1,15 +1,43 @@
 import * as React from 'react';
-import { Link } from 'gatsby';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 
 /* Components */
 import Layout from '../components/Layout';
 
 export default function IndexPage() {
+  const data = useStaticQuery(graphql`
+    query getAllBlogs {
+      allMdx {
+        nodes {
+          id
+          slug
+          frontmatter {
+            title
+            date(fromNow: true)
+          }
+        }
+      }
+    }
+  `);
+
+  const posts = data?.allMdx?.nodes;
+
   return (
     <>
       <Layout>
         <h1>Index page</h1>
         <Link to="/about">About page</Link>
+        <h2>Check all my recent blogs</h2>
+        <ul style={{ display: 'block' }}>
+          {posts.map((post) => {
+            return (
+              <li key={post.id} style={{ marginTop: '10px' }}>
+                <Link to={post.slug}>{post.frontmatter.title}</Link>{' '}
+                <small>Posted: {post.frontmatter.date}</small>
+              </li>
+            );
+          })}
+        </ul>
       </Layout>
     </>
   );
