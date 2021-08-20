@@ -29,7 +29,7 @@ export default function IndexPage() {
   return (
     <>
       <Layout>
-        <div clasName={imageWrapper}>
+        <div className={imageWrapper}>
           <StaticImage
             src="../images/ivana-la-61jg6zviI7I-unsplash.jpg"
             alt="Alternate text for the image"
