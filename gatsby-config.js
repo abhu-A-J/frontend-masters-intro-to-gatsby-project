@@ -29,9 +29,18 @@ module.exports = {
     },
 
     // lugin to start adding mdx
+    `gatsby-remark-images`,
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 590,
+            },
+          },
+        ],
         defaultLayouts: {
           posts: require.resolve('./src/components/BlogLayout.jsx'),
         },
