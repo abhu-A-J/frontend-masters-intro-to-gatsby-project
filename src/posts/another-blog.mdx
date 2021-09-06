@@ -1,0 +1,24 @@
+---
+date: 2021-08-12
+title: Another blog
+description: My second blog posts
+---
+
+import { graphql } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+
+export const query=graphql`
+	query smashBurgerImage {
+		file(name: {eq: "smashburger"}) {
+			childImageSharp {
+				gatsbyImageData(placeholder: BLURRED, width: 400)
+			}
+		}
+	}
+`;
+
+# Awesome blogs!
+
+<GatsbyImage image={getImage(props.data.file)} alt="Alternative text"/>
+
+This is way better than my first blog post
